@@ -110,7 +110,7 @@ const TodoList = () => {
                   onChange={() => toggleTodo(todo.id)}
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                 />
-                <span className={todo.completed ? 'line-through text-gray-500' : 'text-black'}>
+                <span className={todo.completed ? 'todo-text completed' : 'todo-text active'}>
                   {todo.text}
                 </span>
               </div>
