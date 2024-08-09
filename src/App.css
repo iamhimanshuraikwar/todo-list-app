@@ -17,6 +17,10 @@ h1 {
   color: #000000;
 }
 
+.todo-text.active {
+  color: #2c3e50; /* or any other color you prefer */
+}
+
 .todo-details {
   display: flex;
   font-size: 12px;
