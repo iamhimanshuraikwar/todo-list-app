@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, Flag, Trash2, Archive, Plus, X } from 'lucide-react';
+import { Calendar, Flag, Trash2, Archive, Plus } from 'lucide-react';
 
 const priorities = {
   low: { color: 'bg-blue-100 text-blue-800', label: 'Low' },
@@ -28,29 +28,30 @@ const TodoList = () => {
   const [activeTab, setActiveTab] = useState('active');
   const [isAddingTodo, setIsAddingTodo] = useState(false);
 
+  // Load todos from local storage on initial render
   useEffect(() => {
-    const handleBeforeUnload = (e) => {
-      e.preventDefault();
-      e.returnValue = '';
-    };
-
-    window.addEventListener('beforeunload', handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-    };
+    const storedTodos = localStorage.getItem('todos');
+    if (storedTodos) {
+      setTodos(JSON.parse(storedTodos));
+    }
   }, []);
+
+  // Save todos to local storage whenever they change
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
 
   const addTodo = () => {
     if (newTodo.trim() !== '') {
-      setTodos([...todos, {
+      const newTodoItem = {
         id: Date.now(),
         text: newTodo,
         completed: false,
         dueDate: newDueDate,
         priority: newPriority,
         archived: false
-      }]);
+      };
+      setTodos([...todos, newTodoItem]);
       setNewTodo('');
       setNewDueDate('');
       setNewPriority('medium');
