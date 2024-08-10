@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calendar, Flag, Trash2, Archive } from 'lucide-react';
 
 const priorities = {
@@ -8,12 +7,38 @@ const priorities = {
   high: { color: 'bg-red-200 text-red-800', label: 'High' }
 };
 
+const Footer = () => (
+  <div className="fixed bottom-0 left-0 right-0 bg-gray-800 py-2 text-center text-sm text-white border-t flex items-center justify-center">
+    <span className="mr-2">Made with</span>
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+      <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+    </svg>
+    <span>by</span>
+    <a href="https://himanshuraikwar.com/" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:underline ml-1">
+      Himanshu Raikwar
+    </a>
+  </div>
+);
+
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState('');
   const [newDueDate, setNewDueDate] = useState('');
   const [newPriority, setNewPriority] = useState('medium');
   const [activeTab, setActiveTab] = useState('active');
+
+  useEffect(() => {
+    const handleBeforeUnload = (e) => {
+      e.preventDefault();
+      e.returnValue = '';
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
 
   const addTodo = () => {
     if (newTodo.trim() !== '') {
@@ -111,7 +136,7 @@ const TodoList = () => {
                   onChange={() => toggleTodo(todo.id)}
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                 />
-                <span className={todo.completed ? 'todo-text completed' : 'todo-text active'}>
+                <span className={todo.completed ? 'todo-text completed' : 'todo-text'}>
                   {todo.text}
                 </span>
               </div>
@@ -142,19 +167,8 @@ const TodoList = () => {
             </li>
           ))}
         </ul>
-      const Footer = () => (
-  <div className="fixed bottom-0 left-0 right-0 bg-gray-800 py-2 text-center text-sm text-white border-t flex items-center justify-center">
-    <span className="mr-2">Made with</span>
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
-      <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
-    </svg>
-    <span>by</span>
-    <a href="https://himanshuraikwar.com/" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:underline ml-1">
-      Himanshu Raikwar
-    </a>
-  </div>
-);
-
+      </div>
+      <Footer />
     </div>
   );
 };
