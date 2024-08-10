@@ -43,22 +43,22 @@ h1 {
   color: #e74c3c;
 }
 
-ons-input, ons-select {
+input[type="text"], input[type="date"], select {
   margin-bottom: 16px;
 }
 
-ons-button {
+button {
   margin-top: 16px;
 }
 
-ons-list-item {
+li {
   line-height: 1.2;
 }
 
-ons-checkbox {
+input[type="checkbox"] {
   margin-right: 10px;
 }
 
-.right ons-button {
+.right button {
   margin-top: 0;
 }
