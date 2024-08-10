@@ -81,12 +81,12 @@ const TodoList = () => {
   return (
     <div className="min-h-screen pb-16 relative bg-gray-50">
       <Helmet>
-        <title>Elegant Todo List | Manage Your Tasks Efficiently</title>
+        <title>Simple Todo List | Manage Your Tasks Efficiently</title>
         <meta name="description" content="An elegant and efficient todo list application to help you manage your daily tasks, set priorities, and track deadlines." />
         <meta name="keywords" content="todo list, task management, productivity, time management" />
       </Helmet>
       <div className="container mx-auto max-w-2xl p-4 sm:p-6">
-        <h1 className="text-3xl sm:text-4xl font-bold text-center text-gray-800 mb-6 sm:mb-8">Elegant Todo List</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold text-center text-gray-800 mb-6 sm:mb-8">Simple Todo List</h1>
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
           <div className="flex border-b">
             <button
